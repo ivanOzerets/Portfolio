@@ -211,7 +211,7 @@ export default function Home() {
           }}>
             Interested in anything data science, machine learning, and AI.
             Projects for personal development and competency in the field.
-            Always looking to chat with like-minded folks — feel free to reach out.
+            Always looking to chat with like-minded folks (m-dash) feel free to reach out.
           </p>
 
           {/* Contact */}
