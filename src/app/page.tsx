@@ -35,7 +35,7 @@ const COURSES = [
   {
     slug: "ml-in-production",
     title: "Machine Learning in Production",
-    description: "MLOps practices for deploying and maintaining ML systems. Understanding production-grade pipelines.",
+    description: "MLOps practices for deploying and maintaining ML systems. Learning to understand production-grade pipelines.",
     tags: ["MLOps", "Python", "Deployment", "Monitoring"],
     status: "planned",
     disabled: true,
@@ -44,7 +44,7 @@ const COURSES = [
   {
     slug: "deep-learning-specialization",
     title: "Deep Learning Specialization",
-    description: "Neural networks, CNNs, RNNs, and transformers. Five courses covering the full spectrum of modern deep learning.",
+    description: "Neural networks, CNNs, RNNs, and transformers. Follow-up course by Andrew Ng on modern deep learning.",
     tags: ["Python", "TensorFlow", "CNNs", "RNNs", "Transformers"],
     status: "complete",
     disabled: false,
@@ -53,7 +53,7 @@ const COURSES = [
   {
     slug: "ml-specialization",
     title: "Machine Learning Specialization",
-    description: "The most recommended ml course, by Andrew Ng. Supervised, unsupervised, and reinforcement learning basics.",
+    description: "The most recommended ML course, by Andrew Ng. Supervised, unsupervised, and reinforcement learning basics.",
     tags: ["Python", "NumPy", "Classification", "Regression", "Supervised & Unsupervised Learning"],
     status: "complete",
     disabled: false,
@@ -209,13 +209,13 @@ export default function Home() {
             maxWidth: 640,
             marginBottom: "1.75rem",
           }}>
-            Interested in anything data science, machine learning, and AI.
-            Projects for personal development and competency in the field.
-            Always looking to chat with like-minded folks (m-dash) feel free to reach out.
+            Heavily interested in anything data science, machine learning, and AI.
+            Here you'll find my projects, course notes, and apps I've developedfor personal development and competency in the field.
+            Feel free to reach out (m-dash) I'm always looking to chat with like-minded folks.
           </p>
 
           {/* Contact */}
-          <div style={{
+        <div style={{
             fontFamily: "'DM Mono', monospace",
             fontSize: 13,
             letterSpacing: "0.04em",
