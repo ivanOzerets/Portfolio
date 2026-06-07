@@ -8,7 +8,7 @@ const PROJECTS = [
   {
     slug: "personal-research-cli",
     title: "Personal Research CLI",
-    description: "A personal AI research assistant. In goes a list of YouTube links on a subject. Out pops summaries, highlights, and relevant follow-up.",
+    description: "A personal AI research assistant. In goes a list of YouTube links on a subject and out pops summaries, highlights, and relevant follow-up.",
     tags: ["Python", "AI", "CLI", "LLM"],
     status: "planned",
     disabled: true,
@@ -35,7 +35,7 @@ const COURSES = [
   {
     slug: "ml-in-production",
     title: "Machine Learning in Production",
-    description: "MLOps practices for deploying and maintaining ML systems. From concept to production-grade pipelines.",
+    description: "MLOps practices for deploying and maintaining ML systems. Understanding production-grade pipelines.",
     tags: ["MLOps", "Python", "Deployment", "Monitoring"],
     status: "planned",
     disabled: true,
@@ -53,7 +53,7 @@ const COURSES = [
   {
     slug: "ml-specialization",
     title: "Machine Learning Specialization",
-    description: "Andrew Ng's foundational ML course. Supervised, unsupervised, and reinforcement learning from the ground up.",
+    description: "The most recommended ml course, by Andrew Ng. Supervised, unsupervised, and reinforcement learning basics.",
     tags: ["Python", "NumPy", "Classification", "Regression", "Supervised & Unsupervised Learning"],
     status: "complete",
     disabled: false,
