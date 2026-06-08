@@ -15,6 +15,7 @@ export default function WaveGrid() {
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      if (isMobile) drawFrame(0)
     };
     resize();
     window.addEventListener("resize", resize);
