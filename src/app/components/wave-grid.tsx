@@ -41,15 +41,17 @@ export default function WaveGrid() {
       }
     };
 
-    let lastWidth = window.innerWidth;
+    let lastWidth = 0;
 
     const resize = () => {
-      if (window.innerWidth !== lastWidth) {
-        lastWidth = window.innerWidth;
-        canvas.width = window.innerWidth;
+      const newWidth = window.innerWidth;
+      if (newWidth !== lastWidth) {
+        lastWidth = newWidth;
+        canvas.width = newWidth;
         canvas.height = window.innerHeight;
       }
     };
+    resize();
 
     let lastFrame = 0;
     const draw = (t: number) => {
