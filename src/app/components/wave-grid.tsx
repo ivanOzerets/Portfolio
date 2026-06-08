@@ -10,10 +10,7 @@ export default function WaveGrid() {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     const isMobile = window.innerWidth < 768;
-    const interval = isMobile ? 1000 / 24 : 0;
-    let lastFrame = 0;
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -22,17 +19,12 @@ export default function WaveGrid() {
     resize();
     window.addEventListener("resize", resize);
 
-    const draw = (t: number) => {
-      animRef.current = requestAnimationFrame(draw);
-
-      if (isMobile && t - lastFrame < interval) return;
-      lastFrame = t;
-
+    const drawFrame = (t: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const size = 48;
+      const size = isMobile ? 32 : 48;
       const cols = Math.ceil(canvas.width / size) + 2;
       const rows = Math.ceil(canvas.height / size) + 2;
-      const T = isMobile ? t / 3000 : t / 1000;
+      const T = t / 1000;
       for (let r = -1; r < rows; r++) {
         for (let c = -1; c < cols; c++) {
           const bx = c * size;
@@ -53,7 +45,19 @@ export default function WaveGrid() {
         }
       }
     };
-    animRef.current = requestAnimationFrame(draw);
+
+    if (isMobile) {
+      // Single static frame
+      drawFrame(0);
+    } else {
+      // Animated on desktop
+      const draw = (t: number) => {
+        drawFrame(t);
+        animRef.current = requestAnimationFrame(draw);
+      };
+      animRef.current = requestAnimationFrame(draw);
+    }
+
     return () => {
       cancelAnimationFrame(animRef.current);
       window.removeEventListener("resize", resize);
