@@ -11,6 +11,10 @@ export default function WaveGrid() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const isMobile = window.innerWidth < 768;
+    const interval = isMobile ? 1000 / 24 : 0;
+    let lastFrame = 0;
+
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -18,23 +22,17 @@ export default function WaveGrid() {
     resize();
     window.addEventListener("resize", resize);
 
-    const lastTime = { current: 0 };
-    const targetFPS = window.innerWidth < 768 ? 24 : 60;
-    const frameInterval = 1000 / targetFPS;
-
     const draw = (t: number) => {
-      if (t - lastTime.current < frameInterval) {
-        animRef.current = requestAnimationFrame(draw);
-        return;
-      }
-      lastTime.current = t;
+      animRef.current = requestAnimationFrame(draw);
+
+      if (isMobile && t - lastFrame < interval) return;
+      lastFrame = t;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const size = 48;
       const cols = Math.ceil(canvas.width / size) + 2;
       const rows = Math.ceil(canvas.height / size) + 2;
       const T = t / 1000;
-
       for (let r = -1; r < rows; r++) {
         for (let c = -1; c < cols; c++) {
           const bx = c * size;
@@ -54,9 +52,7 @@ export default function WaveGrid() {
           ctx.stroke();
         }
       }
-      animRef.current = requestAnimationFrame(draw);
     };
-
     animRef.current = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(animRef.current);
@@ -66,7 +62,7 @@ export default function WaveGrid() {
 
   return (
     <canvas ref={canvasRef} style={{
-    position: "fixed", inset: 0, width: "100%", height: "100%",
+      position: "fixed", inset: 0, width: "100%", height: "100%",
       zIndex: 0, pointerEvents: "none",
     }} />
   );
