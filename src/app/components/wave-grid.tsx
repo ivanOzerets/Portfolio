@@ -18,9 +18,20 @@ export default function WaveGrid() {
     resize();
     window.addEventListener("resize", resize);
 
+    const lastTime = { current: 0 };
+    const targetFPS = window.innerWidth < 768 ? 24 : 60;
+    const frameInterval = 1000 / targetFPS;
+    const mobileSize = window.innerWidth < 768 ? 72 : 48;
+
     const draw = (t: number) => {
+      if (t - lastTime.current < frameInterval) {
+        animRef.current = requestAnimationFrame(draw);
+        return;
+      }
+      lastTime.current = t;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const size = 48;
+      const size = mobileSize;
       const cols = Math.ceil(canvas.width / size) + 2;
       const rows = Math.ceil(canvas.height / size) + 2;
       const T = t / 1000;
