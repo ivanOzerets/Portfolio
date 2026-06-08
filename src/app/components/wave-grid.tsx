@@ -21,7 +21,6 @@ export default function WaveGrid() {
     const lastTime = { current: 0 };
     const targetFPS = window.innerWidth < 768 ? 24 : 60;
     const frameInterval = 1000 / targetFPS;
-    const mobileSize = window.innerWidth < 768 ? 72 : 48;
 
     const draw = (t: number) => {
       if (t - lastTime.current < frameInterval) {
@@ -31,7 +30,7 @@ export default function WaveGrid() {
       lastTime.current = t;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const size = mobileSize;
+      const size = 48;
       const cols = Math.ceil(canvas.width / size) + 2;
       const rows = Math.ceil(canvas.height / size) + 2;
       const T = t / 1000;
