@@ -56,7 +56,7 @@ export default function WaveGrid() {
 
   return (
     <canvas ref={canvasRef} style={{
-      position: "fixed", inset: 0, width: "100%", height: "100%",
+    position: "fixed", inset: 0, width: "100%", height: "100%",
       zIndex: 0, pointerEvents: "none",
     }} />
   );

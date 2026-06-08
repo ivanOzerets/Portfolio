@@ -4,11 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import WaveGrid from "@/app/components/wave-grid";
 
+const ORDER_CLASSES = [
+  "order-3 lg:order-none",
+  "order-2 lg:order-none",
+  "order-1 lg:order-none",
+]
+
 const PROJECTS = [
   {
     slug: "personal-research-cli",
     title: "Personal Research CLI",
-    description: "A personal AI research assistant. In goes a list of YouTube links on a subject and out pops summaries, highlights, and relevant follow-up.",
+    description: "A personal AI research assistant. In goes a list of links and out pops summaries, highlights, and relevant follow-up.",
     tags: ["Python", "AI", "CLI", "LLM"],
     status: "planned",
     disabled: true,
@@ -61,8 +67,92 @@ const COURSES = [
   },
 ];
 
+function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
+  return (
+    <div className="glass-card p-6 sm:p-7 h-full relative">
+
+      {/* Status */}
+      <div className="flex items-center mb-5">
+        <span className={`status-dot ${p.status === "complete" ? "dot-complete" :
+            p.status === "in progress" ? "dot-progress" : "dot-planned"
+          }`} />
+        <span className="font-mono text-[9px] tracking-[0.12em] uppercase text-white/30">
+          {p.status}
+        </span>
+      </div>
+
+      {/* Title */}
+      <h2 className="font-serif text-lg sm:text-xl font-normal mb-3 tracking-tight text-foreground">
+        {p.title}
+      </h2>
+
+      {/* Preview */}
+      <div className="w-full aspect-video rounded-lg border border-white/[0.08] overflow-hidden mb-5">
+        {p.slug === "ml-architecture-comparison" ? (
+          <video
+            src="/ml-architecture-comparison-preview-video.mp4"
+            autoPlay loop muted playsInline
+            className="w-full h-full object-cover block"
+          />
+        ) : (
+          <div className="w-full h-full bg-white/[0.02] flex items-center justify-center">
+            <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">
+              preview
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Description */}
+      <p className="font-mono text-[11px] sm:text-xs leading-relaxed text-white/45 mb-6">
+        {p.description}
+      </p>
+
+      {/* Tags */}
+      <div className="flex gap-[5px] flex-wrap">
+        {p.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+      </div>
+    </div>
+  );
+}
+
+function CourseCard({ c }: { c: typeof COURSES[0] }) {
+  return (
+    <div className="glass-card glass-card-course p-6 sm:p-7 h-full relative">
+      {/* Status */}
+      <div className="flex items-center mb-5">
+        <span className={`status-dot ${c.status === "complete" ? "dot-complete-course" :
+            c.status === "in progress" ? "dot-progress" : "dot-planned"
+          }`} />
+        <span className="font-mono text-[9px] tracking-[0.12em] uppercase text-white/30">
+          {c.status}
+        </span>
+      </div>
+
+      {/* Title */}
+      <h2 className="font-serif text-lg sm:text-xl font-normal mb-1 tracking-tight text-foreground">
+        {c.title}
+      </h2>
+
+      {/* Provider */}
+      <p className="font-mono text-[9px] tracking-[0.08em] text-accent-purple/50 uppercase mb-4">
+        {c.provider}
+      </p>
+
+      {/* Description */}
+      <p className="font-mono text-[11px] sm:text-xs leading-relaxed text-white/45 mb-6">
+        {c.description}
+      </p>
+
+      {/* Tags */}
+      <div className="flex gap-[5px] flex-wrap">
+        {c.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
-  const [hovered, setHovered] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const copyEmail = (e: React.MouseEvent) => {
@@ -73,381 +163,92 @@ export default function Home() {
   };
 
   return (
-    <main style={{ minHeight: "100vh", background: "#080808", color: "#f0f0f0", position: "relative" }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap');
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        ::selection { background: rgba(0,255,200,0.15); }
-
-        .accent { color: #00ffc8; }
-        .accent-course { color: #a78bfa; }
-        .muted { color: rgba(240,240,240,0.38); }
-
-        .glass-card {
-          background: rgba(255,255,255,0.03);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 0.5px solid rgba(255,255,255,0.08);
-          border-radius: 16px;
-          transition: background 0.3s, border-color 0.3s;
-        }
-        .glass-card:hover {
-          background: rgba(255,255,255,0.06);
-          border-color: rgba(0,255,200,0.2);
-        }
-        .glass-card-course:hover {
-          background: rgba(255,255,255,0.06);
-          border-color: rgba(167,139,250,0.2);
-        }
-
-        .project-link {
-          text-decoration: none;
-          color: inherit;
-          display: block;
-        }
-
-        .tag {
-          font-size: 9px;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 2px 7px;
-          border: 0.5px solid rgba(255,255,255,0.1);
-          border-radius: 3px;
-          color: rgba(240,240,240,0.4);
-          font-family: 'DM Mono', monospace;
-          transition: border-color 0.2s, color 0.2s;
-        }
-        .project-link:hover .tag {
-          border-color: rgba(0,255,200,0.2);
-          color: rgba(0,255,200,0.55);
-        }
-        .course-link:hover .tag {
-          border-color: rgba(167,139,250,0.2);
-          color: rgba(167,139,250,0.55);
-        }
-
-        .status-dot {
-          width: 5px;
-          height: 5px;
-          border-radius: 50%;
-          display: inline-block;
-          margin-right: 5px;
-        }
-        .dot-complete { background: #00ffc8; }
-        .dot-complete-course { background: #a78bfa; }
-        .dot-progress { background: #ffaa00; animation: blink 2s infinite; }
-        .dot-planned { background: rgba(240,240,240,0.25); }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-        .course-link {
-          text-decoration: none;
-          color: inherit;
-          display: block;
-        }
-      `}</style>
-
+    <main className="min-h-screen text-foreground relative">
       <WaveGrid />
 
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div className="relative">
+        <section className="px-4 sm:px-8 lg:px-24 pt-8 pb-16 max-w-[1400px] mx-auto">
 
-        {/* Hero */}
-        <section style={{
-          padding: "2rem clamp(1.5rem, 6vw, 6rem) 4rem",
-          maxWidth: "1400px",
-          margin: "0 auto",
-        }}>
-
-          {/* Identity row */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "2rem",
-            marginBottom: "2.5rem",
-            flexWrap: "wrap",
-          }}>
-            <div style={{
-              width: 110,
-              height: 110,
-              borderRadius: "50%",
-              overflow: "hidden",
-              border: "0.5px solid rgba(255,255,255,0.12)",
-              flexShrink: 0,
-            }}>
-              <Image src="/photo.JPG" alt="Ivan Ozerets" width={110} height={110}
-                style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+          {/* ── Identity ── */}
+          <div className="flex items-center gap-6 sm:gap-8 mb-10">
+            {/* Photo */}
+            <div className="w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] rounded-full overflow-hidden border border-white/[0.12] shrink-0">
+              <Image src="/photo.JPG" alt="Ivan Ozerets" width={110} height={110} className="object-cover w-full h-full" />
             </div>
-
-            <div style={{ display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap" }}>
-              <h1 style={{
-                fontFamily: "'Instrument Serif', serif",
-                fontSize: "clamp(2.8rem, 5vw, 4.2rem)",
-                fontWeight: 400,
-                letterSpacing: "-0.01em",
-                lineHeight: 1,
-              }}>
+            {/* Name + role stacked on mobile, inline on desktop */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-0 sm:gap-5">
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-[4.2rem] font-normal tracking-tight leading-none">
                 Ivan Ozerets
               </h1>
-              <span className="muted" style={{ fontSize: "clamp(0.8rem, 2vw, 1rem)", paddingTop: "0.5rem" }}>|</span>
-              <span className="muted" style={{
-                fontFamily: "'DM Mono', monospace",
-                fontSize: "clamp(0.8rem, 2vw, 1rem)",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                paddingTop: "0.7rem",
-              }}>
-                ML Engineer
-              </span>
+              <div className="flex items-center gap-2 sm:gap-4 mt-1 sm:mt-0">
+                <span className="hidden sm:inline text-white/[0.38] text-sm sm:text-base pt-2">|</span>
+                <span className="font-mono text-[10px] sm:text-sm lg:text-base tracking-[0.08em] uppercase text-white/[0.38] sm:pt-3">
+                  ML Engineer
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Bio */}
-          <p style={{
-            fontFamily: "'DM Mono', monospace",
-            fontSize: 15,
-            lineHeight: 1.9,
-            color: "rgba(240,240,240,0.45)",
-            maxWidth: 640,
-            marginBottom: "1.75rem",
-          }}>
+          {/* ── Bio ── */}
+          <p className="font-mono text-[12px] sm:text-[15px] leading-[1.9] text-white/45 max-w-[640px] mb-7">
             Heavily interested in anything data science, machine learning, and AI.
-            Here you'll find my projects, course notes, and apps I've developedfor personal development and competency in the field.
+            Here you'll find my projects, course notes, and apps I've developed for personal development and competency in the field.
             Feel free to reach out (m-dash) I'm always looking to chat with like-minded folks.
           </p>
 
-          {/* Contact */}
-        <div style={{
-            fontFamily: "'DM Mono', monospace",
-            fontSize: 13,
-            letterSpacing: "0.04em",
-            marginBottom: "3rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.5rem",
-          }}>
-            <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-              <span style={{ color: "rgba(240,240,240,0.25)" }}>email:</span>
-              <a href="#" onClick={copyEmail}
-                style={{ color: "#00ffc8", textDecoration: "none", cursor: "pointer" }}>
+          {/* ── Contact ── */}
+          <div className="font-mono text-[11px] sm:text-[13px] tracking-[0.04em] mb-8 sm:mb-12 flex flex-col gap-2">
+            <div className="flex gap-4 items-center">
+              <span className="text-white/25">email:</span>
+              <a href="#" onClick={copyEmail} className="text-accent no-underline cursor-pointer">
                 ivan (dot) ozerets [at] gmail (dot) com
               </a>
             </div>
-            <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-              <span style={{ color: "rgba(240,240,240,0.25)" }}>github:</span>
+            <div className="flex gap-2 items-center">
+              <span className="text-white/25">github:</span>
               <a href="https://github.com/ivanOzerets" target="_blank" rel="noopener noreferrer"
-                style={{ color: "#00ffc8", textDecoration: "none", cursor: "pointer" }}>
+                className="text-accent no-underline cursor-pointer">
                 ivanOzerets
               </a>
             </div>
           </div>
 
-          {/* ── PROJECTS ── */}
-          <p style={{
-            fontFamily: "'DM Mono', monospace",
-            fontSize: 10,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            color: "rgba(240,240,240,0.25)",
-            marginBottom: "1rem",
-          }}>
+          {/* ── Projects ── */}
+          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-white/25 mb-4">
             Projects
           </p>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1rem",
-            marginBottom: "3rem",
-          }}>
-            {PROJECTS.map((p) => {
-              const card = (
-                <div className="glass-card" style={{ padding: "1.75rem", height: "100%", position: "relative" }}>
-                  {/* Status */}
-                  <div style={{ display: "flex", alignItems: "center", marginBottom: "1.25rem" }}>
-                    <span className={`status-dot ${
-                      p.status === "complete" ? "dot-complete" :
-                      p.status === "in progress" ? "dot-progress" : "dot-planned"
-                    }`} />
-                    <span style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: 9,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "rgba(240,240,240,0.3)",
-                    }}>
-                      {p.status}
-                    </span>
-                  </div>
-                  {/* Title */}
-                  <h2 style={{
-                    fontFamily: "'Instrument Serif', serif",
-                    fontSize: "1.4rem",
-                    fontWeight: 400,
-                    marginBottom: "0.75rem",
-                    letterSpacing: "-0.01em",
-                    color: "#f0f0f0",
-                  }}>
-                    {p.title}
-                  </h2>
-                  {/* Preview */}
-                  <div style={{
-                    width: "100%",
-                    aspectRatio: "16/9",
-                    borderRadius: 8,
-                    border: "0.5px solid rgba(255,255,255,0.08)",
-                    overflow: "hidden",
-                    marginBottom: "1.25rem",
-                  }}>
-                    {p.slug === "ml-architecture-comparison" ? (
-                      <video
-                        src="/ml-architecture-comparison-preview-video.mp4"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                      />
-                    ) : (
-                      <div style={{
-                        width: "100%", height: "100%",
-                        background: "rgba(255,255,255,0.02)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                      }}>
-                        <span style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: 9, letterSpacing: "0.1em",
-                          textTransform: "uppercase",
-                          color: "rgba(240,240,240,0.18)",
-                        }}>preview</span>
-                      </div>
-                    )}
-                  </div>
-                  {/* Description */}
-                  <p style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: 12,
-                    lineHeight: 1.7,
-                    color: "rgba(240,240,240,0.45)",
-                    marginBottom: "1.5rem",
-                  }}>
-                    {p.description}
-                  </p>
-                  {/* Tags */}
-                  <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-                    {p.tags.map((tag) => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              );
-
-              return p.disabled ? (
-                <div key={p.slug} style={{ cursor: "default", pointerEvents: "none" }}>
-                  {card}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 sm:mb-12">
+            {PROJECTS.map((p, i) => (
+              p.disabled ? (
+                <div key={p.slug} className={`cursor-default pointer-events-none ${ORDER_CLASSES[i]}`}>
+                  <ProjectCard p={p} />
                 </div>
               ) : (
-                <Link
-                  key={p.slug}
-                  href={`/projects/${p.slug}`}
-                  className="project-link"
-                  onMouseEnter={() => setHovered(p.slug)}
-                  onMouseLeave={() => setHovered(null)}
-                >
-                  {card}
+                <Link key={p.slug} href={`/projects/${p.slug}`}
+                  className={`no-underline text-inherit block group ${ORDER_CLASSES[i]}`}>
+                  <ProjectCard p={p} />
                 </Link>
-              );
-            })}
+              )
+            ))}
           </div>
 
-          {/* ── COURSES ── */}
-          <p style={{
-            fontFamily: "'DM Mono', monospace",
-            fontSize: 10,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            color: "rgba(240,240,240,0.25)",
-            marginBottom: "1rem",
-          }}>
+          {/* ── Courses ── */}
+          <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-white/25 mb-4">
             Courses
           </p>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "1rem",
-          }}>
-            {COURSES.map((c) => {
-              const card = (
-                <div className={`glass-card glass-card-course`} style={{ padding: "1.75rem", height: "100%", position: "relative" }}>
-                  {/* Status */}
-                  <div style={{ display: "flex", alignItems: "center", marginBottom: "1.25rem" }}>
-                    <span className={`status-dot ${
-                      c.status === "complete" ? "dot-complete-course" :
-                      c.status === "in progress" ? "dot-progress" : "dot-planned"
-                    }`} />
-                    <span style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: 9,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: "rgba(240,240,240,0.3)",
-                    }}>
-                      {c.status}
-                    </span>
-                  </div>
-                  {/* Title */}
-                  <h2 style={{
-                    fontFamily: "'Instrument Serif', serif",
-                    fontSize: "1.4rem",
-                    fontWeight: 400,
-                    marginBottom: "0.4rem",
-                    letterSpacing: "-0.01em",
-                    color: "#f0f0f0",
-                  }}>
-                    {c.title}
-                  </h2>
-                  {/* Provider */}
-                  <p style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: 9,
-                    letterSpacing: "0.08em",
-                    color: "rgba(167,139,250,0.5)",
-                    textTransform: "uppercase",
-                    marginBottom: "1rem",
-                  }}>
-                    {c.provider}
-                  </p>
-                  {/* Description */}
-                  <p style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontSize: 12,
-                    lineHeight: 1.7,
-                    color: "rgba(240,240,240,0.45)",
-                    marginBottom: "1.5rem",
-                  }}>
-                    {c.description}
-                  </p>
-                  {/* Tags */}
-                  <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-                    {c.tags.map((tag) => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              );
-
-              return c.disabled ? (
-                <div key={c.slug} style={{ cursor: "default", pointerEvents: "none" }}>
-                  {card}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {COURSES.map((p, i) => {
+              const reverseOrder = COURSES.length - i; // 3, 2, 1
+              return p.disabled ? (
+                <div key={p.slug} className={`cursor-default pointer-events-none order-${reverseOrder} lg:order-none`}>
+                  <CourseCard c={p} />
                 </div>
               ) : (
-                <Link
-                  key={c.slug}
-                  href={`/courses/${c.slug}`}
-                  className="course-link"
-                  onMouseEnter={() => setHovered(c.slug)}
-                  onMouseLeave={() => setHovered(null)}
-                >
-                  {card}
+                <Link key={p.slug} href={`/courses/${p.slug}`}
+                  className={`no-underline text-inherit block group order-${reverseOrder} lg:order-none`}>
+                  <CourseCard c={p} />
                 </Link>
               );
             })}
@@ -456,28 +257,12 @@ export default function Home() {
         </section>
       </div>
 
+      {/* ── Copied toast ── */}
       {copied && (
-        <div style={{
-          position: "fixed",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: "rgba(0,255,200,0.08)",
-          border: "0.5px solid rgba(0,255,200,0.25)",
-          color: "#00ffc8",
-          fontFamily: "'DM Mono', monospace",
-          fontSize: 11,
-          letterSpacing: "0.05em",
-          padding: "0.4rem 0.9rem",
-          borderRadius: 4,
-          zIndex: 100,
-          backdropFilter: "blur(8px)",
-          whiteSpace: "nowrap",
-        }}>
+        <div className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-accent/[0.08] border border-accent/25 text-accent font-mono text-[11px] tracking-[0.05em] px-4 py-2 rounded z-[100] backdrop-blur-lg whitespace-nowrap">
           copied to clipboard
         </div>
       )}
-
     </main>
   );
 }
