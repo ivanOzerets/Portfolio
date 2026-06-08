@@ -32,7 +32,7 @@ export default function WaveGrid() {
       const size = 48;
       const cols = Math.ceil(canvas.width / size) + 2;
       const rows = Math.ceil(canvas.height / size) + 2;
-      const T = t / 1000;
+      const T = isMobile ? t / 3000 : t / 1000;
       for (let r = -1; r < rows; r++) {
         for (let c = -1; c < cols; c++) {
           const bx = c * size;
