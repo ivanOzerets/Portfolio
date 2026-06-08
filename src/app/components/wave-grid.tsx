@@ -17,7 +17,7 @@ export default function WaveGrid() {
       const size = isMobile ? 32 : 48;
       const cols = Math.ceil(canvas.width / size) + 2;
       const rows = Math.ceil(canvas.height / size) + 2;
-      const T = t / 1000;
+      const T = isMobile ? t / 4000 : t / 1000;
       for (let r = -1; r < rows; r++) {
         for (let c = -1; c < cols; c++) {
           const bx = c * size;
@@ -30,9 +30,9 @@ export default function WaveGrid() {
           const wave = w1 + w2 + w3 + w4 + w5;
           const interference = (Math.abs(w1) + Math.abs(w2)) / 13;
           const opacity = isMobile
-            ? 0.02 + Math.abs(wave) * 0.002 + interference * 0.03
+            ? 0.01 + Math.abs(wave) * 0.001 + interference * 0.02
             : 0.04 + Math.abs(wave) * 0.004 + interference * 0.06;
-          ctx.strokeStyle = `rgba(255,255,255,${Math.min(opacity, 0.2)})`;
+          ctx.strokeStyle = `rgba(255,255,255,${Math.min(opacity, isMobile ? 0.06 : 0.2)})`;
           ctx.lineWidth = 0.5;
           ctx.beginPath();
           ctx.rect(bx + wave * 0.2, by + wave * 0.15, size, size);
@@ -41,25 +41,24 @@ export default function WaveGrid() {
       }
     };
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      if (isMobile) drawFrame(0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
+    let lastWidth = window.innerWidth;
 
-    if (isMobile) {
-      // Single static frame
-      drawFrame(0);
-    } else {
-      // Animated on desktop
-      const draw = (t: number) => {
-        drawFrame(t);
-        animRef.current = requestAnimationFrame(draw);
-      };
+    const resize = () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    };
+
+    let lastFrame = 0;
+    const draw = (t: number) => {
       animRef.current = requestAnimationFrame(draw);
-    }
+      if (isMobile && t - lastFrame < 42) return; // ~24fps on mobile
+      lastFrame = t;
+      drawFrame(t);
+    };
+    animRef.current = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(animRef.current);
