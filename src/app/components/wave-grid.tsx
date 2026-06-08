@@ -12,14 +12,6 @@ export default function WaveGrid() {
     if (!ctx) return;
     const isMobile = window.innerWidth < 768;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      if (isMobile) drawFrame(0);
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
     const drawFrame = (t: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const size = isMobile ? 32 : 48;
@@ -37,7 +29,9 @@ export default function WaveGrid() {
           const w5 = Math.sin((bx * 1.1 + by * 0.3) / 160 + T * 0.2) * 3;
           const wave = w1 + w2 + w3 + w4 + w5;
           const interference = (Math.abs(w1) + Math.abs(w2)) / 13;
-          const opacity = 0.04 + Math.abs(wave) * 0.004 + interference * 0.06;
+          const opacity = isMobile
+            ? 0.02 + Math.abs(wave) * 0.002 + interference * 0.03
+            : 0.04 + Math.abs(wave) * 0.004 + interference * 0.06;
           ctx.strokeStyle = `rgba(255,255,255,${Math.min(opacity, 0.2)})`;
           ctx.lineWidth = 0.5;
           ctx.beginPath();
@@ -46,6 +40,14 @@ export default function WaveGrid() {
         }
       }
     };
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      if (isMobile) drawFrame(0);
+    };
+    resize();
+    window.addEventListener("resize", resize);
 
     if (isMobile) {
       // Single static frame
