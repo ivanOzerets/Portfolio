@@ -38,7 +38,7 @@ const APPS = [
     description: "An interactive bird that roams around the screen. Evolves its personality with the user through API calls.",
     tags: ["Ollama", "Win32", "GDI", "C++", "LLM APIs"],
     status: "complete",
-    disabled: false,
+    disabled: true,
   },
   {
     slug: "re-zero",
@@ -46,7 +46,7 @@ const APPS = [
     description: "An implementation of Mark Forster's Resistance Zero system. Using psychology to build momentum and beat procrastination.",
     tags: ["Tauri", "Rust", "React", "SQLite", "TypeScript"],
     status: "in progress",
-    disabled: false,
+    disabled: true,
   },
   {
     slug: "connect-more",
@@ -54,8 +54,8 @@ const APPS = [
     description: "A widget that cycles through reminders. A constant reminder to keep up with the people that mean the most to you.",
     tags: ["Tauri", "Rust", "React", "SQLite", "TypeScript"],
     status: "planned",
-    disabled: false,
-  }
+    disabled: true,
+  },
 ]
 
 const COURSES = [
@@ -94,7 +94,7 @@ const BOOKS = [
     title: "Mathmatics For Machine Learning",
     authors: "Marc Peter Deisnroth · A. Aldo Faisal · Cheng Soon Ong",
     description: "Understanding the mathmatical foundations of machine learning. The math needs to start mathing.",
-    tags: ["Linear Regression", "Principal Component Analysis", "Gaussian Mixture Models", "Support Vector Machines"],
+    tags: ["Linear Regression", "PCA", "Gaussian Mixture Models", "Support Vector Machines"],
     status: "in progress",
     disabled: true,
   },
