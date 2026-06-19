@@ -38,7 +38,7 @@ const APPS = [
     description: "An interactive bird that roams around the screen. Evolves its personality with the user through API calls.",
     tags: ["Ollama", "Win32", "GDI", "C++", "LLM APIs"],
     status: "complete",
-    disabled: true,
+    disabled: false,
   },
   {
     slug: "re-zero",
