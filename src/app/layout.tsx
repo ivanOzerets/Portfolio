@@ -56,6 +56,16 @@ export default function RootLayout({
             background: #151515;
             border-color: rgba(167, 139, 250, 0.2);
           }
+
+          .glass-card-app:hover {
+            background: #151515;
+            border-color: rgba(96, 165, 250, 0.2);
+          }
+
+          .glass-card-book:hover {
+            background: #151515;
+            border-color: rgba(251, 146, 60, 0.2);
+          }
         `}</style>
       </head>
       <body className="min-h-full flex flex-col">{children}</body>

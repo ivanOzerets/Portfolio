@@ -3,8 +3,11 @@
 @theme inline {
   --color-background: #080808;
   --color-foreground: #f0f0f0;
-  --color-accent: #00ffc8;
-  --color-accent-purple: #a78bfa;
+  --color-accent-project: #00ffc8;
+  --color-accent-app: #60a5fa;
+  --color-accent-course: #a78bfa;
+  --color-accent-book: #fb923c;
+  --color-progress: #ffaa00;
   --font-sans: var(--font-geist-sans);
   --font-mono: 'DM Mono', monospace;
   --font-serif: 'Instrument Serif', serif;
@@ -55,11 +58,35 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 2px 7px;
-    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border: 0.5px solid transparent;
     border-radius: 3px;
     color: rgba(240, 240, 240, 0.4);
     font-family: var(--font-mono);
     transition: border-color 0.2s, color 0.2s;
+  }
+
+  .tag-accent-project {
+    background: rgba(0, 255, 200, 0.04);
+    border-color: rgba(0, 255, 200, 0.12);
+    color: rgba(0, 255, 200, 0.45);
+  }
+
+  .tag-accent-course {
+    background: rgba(167, 139, 250, 0.04);
+    border-color: rgba(167, 139, 250, 0.12);
+    color: rgba(167, 139, 250, 0.45);
+  }
+
+  .tag-accent-app {
+    background: rgba(96, 165, 250, 0.04);
+    border-color: rgba(96, 165, 250, 0.12);
+    color: rgba(96, 165, 250, 0.45);
+  }
+
+  .tag-accent-book {
+    background: rgba(251, 146, 60, 0.04);
+    border-color: rgba(251, 146, 60, 0.12);
+    color: rgba(251, 146, 60, 0.45);
   }
 
   .status-dot {
@@ -70,16 +97,24 @@
     margin-right: 5px;
   }
 
-  .dot-complete {
-    background: #00ffc8;
+  .dot-complete-project {
+    background: var(--color-accent-project);
+  }
+
+  .dot-complete-app {
+    background: var(--color-accent-app);
   }
 
   .dot-complete-course {
-    background: #a78bfa;
+    background: var(--color-accent-course);
+  }
+
+  .dot-complete-book {
+    background: var(--color-accent-book);
   }
 
   .dot-progress {
-    background: #ffaa00;
+    background: var(--color-progress);
     animation: blink 2s infinite;
   }
 
@@ -117,7 +152,7 @@
   .tab-btn.active {
     background: rgba(0, 255, 200, 0.08);
     border-color: rgba(0, 255, 200, 0.3);
-    color: #00ffc8;
+    color: var(--color-accent-project);
   }
 
   /* ── Notes content (shared between course + project pages) ── */
