@@ -17,7 +17,7 @@ const PROJECTS = [
     slug: "greatbase-tennis-rag-assistant",
     title: "GreatBase Tennis RAG Assistant",
     description: "A personal AI research assistant. In goes a list of links and out pops summaries, highlights, and relevant follow-up.",
-    tags: ["Python", "AI", "CLI", "LLM"],
+    tags: ["RAG", "LangChain", "Pinecone", "OpenAI", "Embeddings", "FastAPI"],
     status: "in progress",
     disabled: true,
   },
@@ -42,7 +42,7 @@ const APPS = [
   },
   {
     slug: "re-zero",
-    title: "Re-Zero",
+    title: "Re-Zero Productivity System",
     description: "An implementation of Mark Forster's Resistance Zero system. Using psychology to build momentum and beat procrastination.",
     tags: ["Tauri", "Rust", "React", "SQLite", "TypeScript"],
     status: "in progress",
@@ -50,7 +50,7 @@ const APPS = [
   },
   {
     slug: "connect-more",
-    title: "Connect More",
+    title: "Connect More Desktop Widget",
     description: "A widget that cycles through reminders. A constant reminder to keep up with the people that mean the most to you.",
     tags: ["Tauri", "Rust", "React", "SQLite", "TypeScript"],
     status: "planned",
