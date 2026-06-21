@@ -89,7 +89,7 @@ export default function AiDesktopCompanion() {
                 {/* Hero video */}
                 <div className="glass p-0 overflow-hidden mb-4 rounded-2xl">
                     <div className="w-full aspect-video bg-white/[0.02] flex items-center justify-center">
-                        <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">video</span>
+                        <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">video baking</span>
                     </div>
                 </div>
 
@@ -99,7 +99,7 @@ export default function AiDesktopCompanion() {
                         <div key={f.title} className="glass p-5 flex flex-col gap-3">
                             <p className="text-[10px] tracking-[0.15em] uppercase text-white/25">{f.title}</p>
                             <div className="w-full aspect-video bg-white/[0.02] rounded-lg flex items-center justify-center">
-                                <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">clip</span>
+                                <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">clip roasting</span>
                             </div>
                             <p className="text-[11px] text-white/35 leading-relaxed">{f.description}</p>
                         </div>
@@ -205,7 +205,7 @@ export default function AiDesktopCompanion() {
                     </div>
                     {notesOpen && (
                         <div className="notes-content text-xs text-white/35 leading-[1.8] mt-4">
-                            <ReactMarkdown>{""}</ReactMarkdown>
+                            <ReactMarkdown>{"No notes yet.."}</ReactMarkdown>
                         </div>
                     )}
                 </div>
