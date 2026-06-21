@@ -17,7 +17,7 @@ const PROJECTS = [
     slug: "greatbase-tennis-rag-assistant",
     title: "GreatBase Tennis RAG Assistant",
     description: "A personal AI research assistant. In goes a list of links and out pops summaries, highlights, and relevant follow-up.",
-    tags: ["RAG", "LangChain", "Pinecone", "OpenAI", "Embeddings", "FastAPI"],
+    tags: ["RAG", "LangChain", "Pinecone", "OpenAI", "FastAPI"],
     status: "in progress",
     disabled: true,
   },
@@ -38,7 +38,7 @@ const APPS = [
     description: "An interactive bird that roams around the screen. Evolves its personality with the user through API calls.",
     tags: ["Ollama", "Win32", "GDI", "C++", "LLM APIs"],
     status: "complete",
-    disabled: true,
+    disabled: false,
   },
   {
     slug: "re-zero",
@@ -159,7 +159,7 @@ function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
         ) : (
           <div className="w-full h-full bg-white/[0.02] flex items-center justify-center">
             <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">
-              preview
+              preview cooking
             </span>
           </div>
         )}
@@ -200,7 +200,7 @@ function AppCard({ a }: { a: typeof APPS[0] }) {
       <div className="w-full aspect-video rounded-lg border border-white/[0.08] overflow-hidden mb-5">
         <div className="w-full h-full bg-white/[0.02] flex items-center justify-center">
           <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">
-            preview
+            preview cooking
           </span>
         </div>
       </div>

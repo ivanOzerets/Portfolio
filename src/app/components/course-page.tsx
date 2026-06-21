@@ -71,13 +71,13 @@ export default function CoursePage({ title, provider, courses, basePath }: Cours
             <div className="max-w-[860px] mx-auto px-4 sm:px-8 lg:px-12 pt-8 pb-24">
 
                 {/* Back */}
-                <Link href="/" className="text-white/30 no-underline text-[11px] tracking-[0.08em] inline-flex items-center gap-1.5 mb-8 hover:text-accent-purple transition-colors">
+                <Link href="/" className="text-white/30 no-underline text-[11px] tracking-[0.08em] inline-flex items-center gap-1.5 mb-8 hover:text-accent-course transition-colors">
                     ← back
                 </Link>
 
                 {/* Header */}
                 <div className="mb-8">
-                    <p className="text-[9px] tracking-[0.15em] uppercase text-accent-purple/50 mb-2">
+                    <p className="text-[9px] tracking-[0.15em] uppercase text-accent-course/50 mb-2">
                         {provider}
                     </p>
                     <h1 className="font-serif text-2xl sm:text-3xl lg:text-[2.8rem] font-normal tracking-tight leading-tight">
@@ -184,7 +184,7 @@ export default function CoursePage({ title, provider, courses, basePath }: Cours
             {showTop && (
                 <button
                     onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/[0.04] border border-accent-purple/30 text-accent-purple font-mono text-[10px] tracking-[0.1em] uppercase px-4 py-1.5 rounded cursor-pointer backdrop-blur-lg z-[100] hover:border-accent-purple/60 transition-colors"
+                    className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white/[0.04] border border-accent-course/30 text-accent-course font-mono text-[10px] tracking-[0.1em] uppercase px-4 py-1.5 rounded cursor-pointer backdrop-blur-lg z-[100] hover:border-accent-course/60 transition-colors"
                 >
                     ↑ top
                 </button>

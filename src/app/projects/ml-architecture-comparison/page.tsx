@@ -148,14 +148,14 @@ export default function MlArchitectureComparison() {
       <div className="max-w-[1200px] mx-auto px-4 sm:px-8 lg:px-12 pt-8 pb-16">
 
         {/* Back */}
-        <Link href="/" className="text-white/30 no-underline text-[11px] tracking-[0.08em] inline-flex items-center gap-1.5 mb-8 hover:text-accent transition-colors">
+        <Link href="/" className="text-white/30 no-underline text-[11px] tracking-[0.08em] inline-flex items-center gap-1.5 mb-8 hover:text-accent-project transition-colors">
           ← back
         </Link>
 
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-accent-project inline-block" />
             <span className="text-[9px] tracking-[0.15em] uppercase text-white/30">complete</span>
           </div>
           <h1 className="font-serif text-2xl sm:text-3xl lg:text-[3.2rem] font-normal tracking-tight mb-2">
@@ -178,7 +178,7 @@ export default function MlArchitectureComparison() {
             </div>
 
             <div
-              className="border border-dashed border-white/15 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors hover:border-accent/30 hover:bg-accent/[0.02] h-[220px] sm:h-[260px] mb-5 relative overflow-hidden"
+              className="border border-dashed border-white/15 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors hover:border-accent-project/30 hover:bg-accent-project/[0.02] h-[220px] sm:h-[260px] mb-5 relative overflow-hidden"
               onClick={() => fileRef.current?.click()}
               onDrop={handleDrop}
               onDragOver={e => e.preventDefault()}
@@ -201,13 +201,13 @@ export default function MlArchitectureComparison() {
                   <span className={`text-[10px] w-[70px] tracking-[0.04em] ${prediction?.class === cls ? "text-foreground" : "text-white/35"
                     }`}>{cls}</span>
                   <div className="flex-1 h-1 bg-white/[0.06] rounded-sm overflow-hidden">
-                    <div className="h-full rounded-sm bg-accent transition-all duration-500"
+                    <div className="h-full rounded-sm bg-accent-project transition-all duration-500"
                       style={{
                         width: prediction ? `${(prediction.scores[cls] || 0) * 100}%` : "0%",
                         opacity: prediction?.class === cls ? 1 : 0.4,
                       }} />
                   </div>
-                  <span className={`text-[10px] w-9 text-right ${prediction?.class === cls ? "text-accent" : "text-white/30"
+                  <span className={`text-[10px] w-9 text-right ${prediction?.class === cls ? "text-accent-project" : "text-white/30"
                     }`}>
                     {prediction ? `${((prediction.scores[cls] || 0) * 100).toFixed(1)}%` : "—"}
                   </span>
@@ -223,7 +223,7 @@ export default function MlArchitectureComparison() {
               <a
                 href="https://github.com/ivanOzerets/John-Carter-Speedrun/tree/main/Projects/ml-architecture-comparison"
                 target="_blank" rel="noopener noreferrer"
-                className="text-[10px] text-white/30 no-underline tracking-[0.08em] hover:text-accent transition-colors"
+                className="text-[10px] text-white/30 no-underline tracking-[0.08em] hover:text-accent-project transition-colors"
               >link to repo</a>
             </div>
             <div className="flex gap-1.5 mb-4">
@@ -253,10 +253,10 @@ export default function MlArchitectureComparison() {
             className="flex justify-between items-center cursor-pointer select-none group"
           >
             <div className="flex items-center gap-2">
-              <p className="text-[10px] tracking-[0.15em] uppercase text-white/25 group-hover:text-accent/50 transition-colors">
+              <p className="text-[10px] tracking-[0.15em] uppercase text-white/25 group-hover:text-accent-project/50 transition-colors">
                 Notes
               </p>
-              <span className="text-sm text-white/25 leading-none mb-1 group-hover:text-accent/50 transition-colors">
+              <span className="text-sm text-white/25 leading-none mb-1 group-hover:text-accent-project/50 transition-colors">
                 {notesOpen ? "▴" : "▾"}
               </span>
             </div>
