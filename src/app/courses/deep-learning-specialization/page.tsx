@@ -72,19 +72,78 @@ const COURSES: Course[] = [
     {
         title: "Course 4: Convolutional Neural Networks",
         weeks: [
-            { title: "Week 1: Foundations of Convolutional Neural Networks", file: null },
-            { title: "Week 2: Deep Convolutional Neural Networks: Case Studies", file: null },
-            { title: "Week 3: Object Detection", file: null },
-            { title: "Week 4: Special Applications: Face Recognition and Neural Style Transfer", file: null },
+            {
+                title: "Week 1: Foundations of Convolutional Neural Networks",
+                file: "c4/week1.md",
+                labs: [
+                    { title: "Lab — Convolutional Neural Network Step by Step", file: "c4/week1-lab-conv-nn-step-by-step.md" },
+                    { title: "Programming Assignment — Convolution Model Application", file: "c4/week1-practice-lab.md" },
+                ],
+            },
+            {
+                title: "Week 2: Deep Convolutional Models: Case Studies",
+                file: "c4/week2.md",
+                labs: [
+                    { title: "Programming Assignment — Residual Networks", file: "c4/week2-practice-lab-residual-networks.md" },
+                    { title: "Programming Assignment — Transfer Learning with MobileNet", file: "c4/week2-practice-lab-transfer-learning.md" },
+                ],
+            },
+            {
+                title: "Week 3: Object Detection",
+                file: "c4/week3.md",
+                labs: [
+                    { title: "Programming Assignment — Car Detection with YOLO", file: "c4/week3-practice-lab-yolo.md" },
+                    { title: "Programming Assignment — Image Segmentation with U-Net", file: "c4/week3-practice-lab-unet.md" },
+                ],
+            },
+            {
+                title: "Week 4: Special Applications: Face Recognition and Neural Style Transfer",
+                file: "c4/week4.md",
+                labs: [
+                    { title: "Programming Assignment — Face Recognition", file: "c4/week4-practice-lab-face-recognition.md" },
+                    { title: "Programming Assignment — Art Generation with Neural Style Transfer", file: "c4/week4-practice-lab-neural-style-transfer.md" },
+                ],
+            },
         ],
     },
     {
         title: "Course 5: Sequence Models",
         weeks: [
-            { title: "Week 1: Recurrent Neural Networks", file: null },
-            { title: "Week 2: Natural Language Processing and Word Embeddings", file: null },
-            { title: "Week 3: Sequence Models and Attention Mechanism", file: null },
-            { title: "Week 4: Transformer Network", file: null },
+            {
+                title: "Week 1: Recurrent Neural Networks",
+                file: "c5/week1.md",
+                labs: [
+                    { title: "Programming Assignment — Building your Recurrent Neural Network", file: "c5/week1-practice-lab-rnn.md" },
+                    { title: "Programming Assignment — Dinosaur Island Character-Level Language Model", file: "c5/week1-practice-lab-dinosaur-island.md" },
+                    { title: "Programming Assignment — Improvise a Jazz Solo with an LSTM Network", file: "c5/week1-practice-lab-jazz.md" },
+                ],
+            },
+            {
+                title: "Week 2: Natural Language Processing and Word Embeddings",
+                file: "c5/week2.md",
+                labs: [
+                    { title: "Programming Assignment — Operations on Word Vectors", file: "c5/week2-practice-lab-word-vectors.md" },
+                    { title: "Programming Assignment — Emojify", file: "c5/week2-practice-lab-emojify.md" },
+                ],
+            },
+            {
+                title: "Week 3: Sequence Models and Attention Mechanism",
+                file: "c5/week3.md",
+                labs: [
+                    { title: "Programming Assignment — Neural Machine Translation", file: "c5/week3-practice-lab-nmt.md" },
+                    { title: "Programming Assignment — Trigger Word Detection", file: "c5/week3-practice-lab-trigger-word.md" },
+                ],
+            },
+            {
+                title: "Week 4: Transformer Network",
+                file: "c5/week4.md",
+                labs: [
+                    { title: "Lab — Transformer Pre-processing", file: "c5/week4-lab-transformer-preprocessing.md" },
+                    { title: "Programming Assignment — Transformers Architecture", file: "c5/week4-practice-lab-transformers.md" },
+                    { title: "Programming Assignment — Named-Entity Recognition", file: "c5/week4-practice-lab-ner.md" },
+                    { title: "Programming Assignment — Question Answering", file: "c5/week4-practice-lab-qa.md" },
+                ],
+            },
         ],
     },
 ];

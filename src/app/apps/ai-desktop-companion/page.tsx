@@ -6,20 +6,24 @@ import ReactMarkdown from "react-markdown";
 
 const FEATURES = [
     {
-        title: "Animation",
+        title: "Animations",
         description: "Dynamic weight-driven animation system. Current animations include idle, flight, sleep, and dance if you ask nicely.",
+        clip: "/videos/animation_clip.mp4",
     },
     {
         title: "Interactivity",
-        description: "Pet, poke, or talk to the bird. Reacts relatively quickly and remember your interactions.. so don't poke too much.",
+        description: "Pet, poke, or talk to the bird. Reacts relatively quickly and remembers your interactions.. so don't poke too much.",
+        clip: "/videos/interaction.mp4",
     },
     {
         title: "Evolution",
         description: "Personality and animation weights shift slowly over time from user interactions and environment cues.",
+        clip: "/videos/evolution_clip.mp4",
     },
     {
         title: "Memory",
         description: "A running history log shapes the LLM context. Give the bird continuity across sessions.. if you ever turn the bird off for some reason pfft.",
+        clip: "/videos/memory.mp4",
     },
 ];
 
@@ -88,9 +92,14 @@ export default function AiDesktopCompanion() {
 
                 {/* Hero video */}
                 <div className="glass p-0 overflow-hidden mb-4 rounded-2xl">
-                    <div className="w-full aspect-video bg-white/[0.02] flex items-center justify-center">
-                        <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">video baking</span>
-                    </div>
+                    <video
+                        src="/videos/main.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full aspect-video object-cover"
+                    />
                 </div>
 
                 {/* Feature clips — 2x2 grid */}
@@ -98,9 +107,20 @@ export default function AiDesktopCompanion() {
                     {FEATURES.map((f) => (
                         <div key={f.title} className="glass p-5 flex flex-col gap-3">
                             <p className="text-[10px] tracking-[0.15em] uppercase text-white/25">{f.title}</p>
-                            <div className="w-full aspect-video bg-white/[0.02] rounded-lg flex items-center justify-center">
-                                <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">clip roasting</span>
-                            </div>
+                            {f.clip ? (
+                                <video
+                                    src={f.clip}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="w-full aspect-video rounded-lg object-cover"
+                                />
+                            ) : (
+                                <div className="w-full aspect-video bg-white/[0.02] rounded-lg flex items-center justify-center">
+                                    <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">clip roasting</span>
+                                </div>
+                            )}
                             <p className="text-[11px] text-white/35 leading-relaxed">{f.description}</p>
                         </div>
                     ))}

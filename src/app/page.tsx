@@ -90,10 +90,10 @@ const COURSES = [
 
 const BOOKS = [
   {
-    slug: "mathmatics-for-machine-learning",
-    title: "Mathmatics For Machine Learning",
+    slug: "mathematics-for-machine-learning",
+    title: "Mathematics For Machine Learning",
     authors: "Marc Peter Deisnroth · A. Aldo Faisal · Cheng Soon Ong",
-    description: "Understanding the mathmatical foundations of machine learning. The math needs to start mathing.",
+    description: "Understanding the mathematical foundations of machine learning. The underlying basics of models and AI.",
     tags: ["Linear Regression", "PCA", "Gaussian Mixture Models", "Support Vector Machines"],
     status: "in progress",
     disabled: true,
@@ -111,7 +111,7 @@ const BOOKS = [
     slug: "deep-learning",
     title: "Deep Learning",
     authors: "Ian Goodfellow · Yoshua Bengio · Aaron Courville",
-    description: "The definitive deep learning textbook apparently. From math foundations through modern architectures.",
+    description: "The definitive deep learning textbook apparently. From mathematical foundations through modern architectures.",
     tags: ["Math Foundations", "Neural Networks", "CNNs & RNNs", "Practical DL"], 
     status: "planned",
     disabled: true,
@@ -198,11 +198,19 @@ function AppCard({ a }: { a: typeof APPS[0] }) {
 
       {/* Preview */}
       <div className="w-full aspect-video rounded-lg border border-white/[0.08] overflow-hidden mb-5">
-        <div className="w-full h-full bg-white/[0.02] flex items-center justify-center">
-          <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">
-            preview cooking
-          </span>
-        </div>
+        {a.slug === "ai-desktop-companion" ? (
+          <video
+            src="/videos/main.mp4"
+            autoPlay loop muted playsInline
+            className="w-full h-full object-cover block"
+          />
+        ) : (
+          <div className="w-full h-full bg-white/[0.02] flex items-center justify-center">
+            <span className="font-mono text-[9px] tracking-[0.1em] uppercase text-white/[0.18]">
+              preview cooking
+            </span>
+          </div>
+        )}
       </div>
 
       {/* Description */}
