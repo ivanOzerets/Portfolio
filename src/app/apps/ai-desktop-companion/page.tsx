@@ -98,6 +98,7 @@ export default function AiDesktopCompanion() {
                         loop
                         muted
                         playsInline
+                        preload="none"
                         className="w-full aspect-video object-cover"
                     />
                 </div>
@@ -114,6 +115,7 @@ export default function AiDesktopCompanion() {
                                     loop
                                     muted
                                     playsInline
+                                    preload="none"
                                     className="w-full aspect-video rounded-lg object-cover"
                                 />
                             ) : (

@@ -9,8 +9,8 @@
   --color-accent-book: #fb923c;
   --color-progress: #ffaa00;
   --font-sans: var(--font-geist-sans);
-  --font-mono: 'DM Mono', monospace;
-  --font-serif: 'Instrument Serif', serif;
+  --font-mono: var(--font-dm-mono), monospace;
+  --font-serif: var(--font-instrument-serif), serif;
 }
 
 /* ── Base ── */

@@ -153,7 +153,7 @@ function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
         {p.slug === "ml-architecture-comparison" ? (
           <video
             src="/videos/ml-architecture-comparison-preview-video.mp4"
-            autoPlay loop muted playsInline
+            autoPlay loop muted playsInline preload="none"
             className="w-full h-full object-cover block"
           />
         ) : (
@@ -201,7 +201,7 @@ function AppCard({ a }: { a: typeof APPS[0] }) {
         {a.slug === "ai-desktop-companion" ? (
           <video
             src="/videos/main.mp4"
-            autoPlay loop muted playsInline
+            autoPlay loop muted playsInline preload="none"
             className="w-full h-full object-cover block"
           />
         ) : (

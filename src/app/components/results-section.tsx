@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
     LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer,
-    BarChart, Bar, Cell
+    BarChart, Bar
 } from "recharts";
 
 // ── types ──
@@ -120,7 +120,7 @@ function ConfusionMatrix({ matrix }: { matrix: number[][] }) {
                             const intensity = val / max;
                             return (
                                 <div key={j} title={`${CLASS_NAMES[i]} → ${CLASS_NAMES[j]}: ${val}`}
-                                    className="aspect-square rounded-sm flex items-center justify-center text-[9px]"
+                                    className="h-9.5 rounded-sm flex items-center justify-center text-[9px]"
                                     style={{
                                         background: i === j ? `rgba(0,255,200,${0.1 + intensity * 0.8})` : `rgba(255,100,100,${intensity * 0.6})`,
                                         color: intensity > 0.3 ? "#f0f0f0" : "rgba(240,240,240,0.4)",
@@ -166,8 +166,8 @@ function PcaPlot({ data }: { data: PcaData }) {
 
     return (
         <div>
-            <canvas ref={canvasRef} width={350} height={280}
-                className="w-full h-auto rounded-lg bg-black/20 border border-white/[0.06]" />
+            <canvas ref={canvasRef} width={350} height={266}
+                className="w-full h-[250px] rounded-lg bg-black/20 border border-white/[0.06]" />
             <div className="flex flex-wrap gap-2 mt-2">
                 {Object.entries(CLASS_SHORT).map(([key, name], i) => (
                     <div key={key} onMouseEnter={() => setHoveredClass(i)} onMouseLeave={() => setHoveredClass(null)}
@@ -189,6 +189,7 @@ function MisclassifiedGrid({ items }: { items: MisclassifiedItem[] }) {
             {items.map((item, i) => (
                 <div key={i} className="relative shrink-0 w-[120px] sm:w-[140px]">
                     <img src={`/misclassified/${item.filename}`} alt={item.true}
+                        width={140} height={140}
                         className="w-full h-[120px] sm:h-[140px] object-cover rounded-md block" />
                     <div className="absolute bottom-0 left-0 right-0 bg-black/75 rounded-b-md px-1.5 py-1">
                         <div className="text-[8px] text-white/50">true: <span style={{ color: CLASS_COLORS[CLASS_NAMES.indexOf(item.true)] }}>{item.true}</span></div>
@@ -358,10 +359,10 @@ export default function ResultsSection() {
             {/* ── SKLEARN ── */}
             {!loading && activeTab === "sklearn" && (
                 <div className="flex flex-col gap-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                         <div>
                             <p className="text-[9px] tracking-[0.1em] uppercase text-white/25 mb-3">Classifier accuracy</p>
-                            <ResponsiveContainer width="100%" height={267}>
+                            <ResponsiveContainer width="100%" height={274}>
                                 <BarChart data={SKLEARN_CLASSIFIERS.map(({ key, label }) => ({
                                     name: label, acc: parseFloat(((sklearnSummary[`${key}/test_acc`] || 0) * 100).toFixed(1)), selected: key === selectedClassifier,
                                 }))}
@@ -375,9 +376,10 @@ export default function ResultsSection() {
                                     <YAxis width={20} domain={[88, 95]} tick={{ fontSize: 8, fill: "rgba(240,240,240,0.3)" }} tickLine={false} axisLine={false} tickFormatter={v => `${v}%`} />
                                     <Tooltip contentStyle={{ background: "#111", border: "0.5px solid rgba(255,255,255,0.1)", borderRadius: 4, fontSize: 10 }}
                                         formatter={(v: unknown) => [`${v}%`, "accuracy"]} labelFormatter={() => ""} cursor={{ fill: "rgba(255,255,255,0.03)" }} itemStyle={{ color: "#f0f0f0" }} />
-                                    <Bar dataKey="acc" radius={[3, 3, 0, 0]}>
-                                        {SKLEARN_CLASSIFIERS.map(({ key }) => <Cell key={key} fill={key === selectedClassifier ? "#00ffc8" : "rgba(255,255,255,0.15)"} />)}
-                                    </Bar>
+                                    <Bar dataKey="acc" shape={(props: any) => {
+                                        const { x, y, width, height, payload } = props;
+                                        return <rect x={x} y={y} width={width} height={height} rx={3} ry={3} fill={payload.selected ? "#00ffc8" : "rgba(255,255,255,0.15)"} />;
+                                    }} />
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
@@ -387,9 +389,7 @@ export default function ResultsSection() {
                         </div>
                         <div>
                             <p className="text-[9px] tracking-[0.1em] uppercase text-white/25 mb-3">{selectedClassifier} — confusion matrix</p>
-                            <div className="max-w-[260px]">
-                                <ConfusionMatrix matrix={confusionMatrix} />
-                            </div>
+                            <ConfusionMatrix matrix={confusionMatrix} />
                         </div>
                     </div>
                     <div className="mt-4">
