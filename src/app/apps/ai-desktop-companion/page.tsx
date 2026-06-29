@@ -141,8 +141,8 @@ export default function AiDesktopCompanion() {
                                         <span className="text-[11px] text-white/40 leading-relaxed">{s.text}</span>
                                     </div>
                                 ))}
-                                <a href="#" className="ml-6 self-start font-mono text-[10px] text-accent-app/60 hover:text-accent-app transition-colors no-underline">
-                                    ↓ download .zip
+                                <a href="https://github.com/ivanOzerets/AI-Desktop-Companion/releases/download/v1.0-beta/ai-desktop-companion.zip" className="ml-6 self-start font-mono text-[10px] text-accent-app/60 hover:text-accent-app transition-colors no-underline">
+                                    ↓ download .zip <span className="text-white/25">· 34.5 MB</span>
                                 </a>
                             </div>
 
