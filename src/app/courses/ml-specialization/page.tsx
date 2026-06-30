@@ -93,7 +93,7 @@ export default function MLSpecializationPage() {
             title="Machine Learning Specialization"
             provider="Coursera · DeepLearning.AI"
             courses={COURSES}
-            basePath="/notes/ml-specialization/"
+            basePath="/notes/courses/ml-specialization/"
         />
     );
 }

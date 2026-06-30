@@ -138,7 +138,7 @@ export default function MlArchitectureComparison() {
   const [notesOpen, setNotesOpen] = useState(false);
 
   useEffect(() => {
-    fetch("/notes/ml-architecture-comparison.md").then(r => r.text()).then(setNotes);
+    fetch("/notes/projects/ml-architecture-comparison/ml-architecture-comparison.md").then(r => r.text()).then(setNotes);
   }, []);
 
   return (
