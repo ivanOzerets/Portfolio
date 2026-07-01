@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import WaveGrid from "@/app/components/wave-grid";
 import ReactMarkdown from "react-markdown";
@@ -56,7 +56,13 @@ const MODELS = [
 ];
 
 export default function AiDesktopCompanion() {
+    const [notes, setNotes] = useState("");
     const [notesOpen, setNotesOpen] = useState(false);
+
+    useEffect(() => {
+        fetch("/notes/apps/ai-desktop-companion/ai-desktop-companion.md").then(r => r.text()).then(setNotes);
+    }, []);
+
     const [copiedModel, setCopiedModel] = useState<string | null>(null);
 
     const copyModel = (name: string) => {
@@ -227,7 +233,7 @@ export default function AiDesktopCompanion() {
                     </div>
                     {notesOpen && (
                         <div className="notes-content text-xs text-white/35 leading-[1.8] mt-4">
-                            <ReactMarkdown>{"No notes yet.."}</ReactMarkdown>
+                            <ReactMarkdown>{notes}</ReactMarkdown>
                         </div>
                     )}
                 </div>
