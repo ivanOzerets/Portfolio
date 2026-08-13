@@ -247,7 +247,7 @@ export default function ReZero() {
 							<p className="text-[10px] tracking-[0.15em] uppercase text-white/25">File Format</p>
 							<p className="text-[9px] tracking-[0.12em] uppercase text-white/25">todo.md by default</p>
 							<p className="text-[11px] text-white/40 leading-relaxed">
-								todo.md is auto-populated with these four headers on first open
+								<span className="font-mono text-accent-app/60">todo.md</span> is auto-populated with these four headers on first open
 							</p>
 							<div className="flex flex-col gap-2.5">
 								{FILE_FORMAT.map((f) => (
