@@ -31,6 +31,15 @@ const PROJECTS = [
   },
 ];
 
+const PROJECT_PREVIEWS: Record<string, string> = {
+  "ml-architecture-comparison": "/videos/ml-architecture-comparison/preview-video.mp4",
+};
+
+const APP_PREVIEWS: Record<string, string> = {
+  "ai-desktop-companion": "/videos/ai-desktop-companion/main.mp4",
+  "re-zero": "/videos/re-zero/re-zero_hero.mp4",
+};
+
 const APPS = [
   {
     slug: "ai-desktop-companion",
@@ -44,16 +53,16 @@ const APPS = [
     slug: "re-zero",
     title: "Re-Zero Productivity System",
     description: "An implementation of Mark Forster's Resistance Zero system. Using psychology to build momentum and beat procrastination.",
-    tags: ["Tauri", "Rust", "React", "SQLite", "TypeScript"],
-    status: "in progress",
-    disabled: true,
+    tags: ["Lua", "Neovim", "Buffer API", "Markdown"],
+    status: "complete",
+    disabled: false,
   },
   {
     slug: "connect-more",
     title: "Connect More Desktop Widget",
     description: "A widget that cycles through reminders. A constant reminder to keep up with the people that mean the most to you.",
     tags: ["Tauri", "Rust", "React", "SQLite", "TypeScript"],
-    status: "planned",
+    status: "in progress",
     disabled: true,
   },
 ]
@@ -150,9 +159,9 @@ function ProjectCard({ p }: { p: typeof PROJECTS[0] }) {
 
       {/* Preview */}
       <div className="w-full aspect-video rounded-lg border border-white/[0.08] overflow-hidden mb-5">
-        {p.slug === "ml-architecture-comparison" ? (
+        {PROJECT_PREVIEWS[p.slug] ? (
           <video
-            src="/videos/ml-architecture-comparison-preview-video.mp4"
+            src={PROJECT_PREVIEWS[p.slug]}
             autoPlay loop muted playsInline preload="none"
             className="w-full h-full object-cover block"
           />
@@ -198,9 +207,9 @@ function AppCard({ a }: { a: typeof APPS[0] }) {
 
       {/* Preview */}
       <div className="w-full aspect-video rounded-lg border border-white/[0.08] overflow-hidden mb-5">
-        {a.slug === "ai-desktop-companion" ? (
+        {APP_PREVIEWS[a.slug] ? (
           <video
-            src="/videos/main.mp4"
+            src={APP_PREVIEWS[a.slug]}
             autoPlay loop muted playsInline preload="none"
             className="w-full h-full object-cover block"
           />
