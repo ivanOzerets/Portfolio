@@ -51,7 +51,7 @@ const APPS = [
   },
   {
     slug: "re-zero",
-    title: "Re-Zero Productivity System",
+    title: "Re-Zero Neovim Plugin",
     description: "An implementation of Mark Forster's Resistance Zero system. Using psychology to build momentum and beat procrastination.",
     tags: ["Lua", "Neovim", "Buffer API", "Markdown"],
     status: "complete",
