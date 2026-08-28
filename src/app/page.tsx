@@ -348,7 +348,7 @@ export default function Home() {
           <p className="font-mono text-[12px] sm:text-[15px] leading-[1.9] text-white/45 max-w-[640px] mb-7">
             Heavily interested in anything data science, machine learning, and AI.
             Here you'll find my projects, course notes, and apps I've developed for personal development and competency in the field.
-            Feel free to reach out (m-dash) I'm always looking to chat with like-minded folks.
+            Feel free to reach out (em dash) I'm always looking to chat with like-minded folks.
           </p>
 
           {/* Contact */}
