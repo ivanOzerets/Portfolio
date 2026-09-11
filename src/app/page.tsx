@@ -16,7 +16,7 @@ const PROJECTS = [
   {
     slug: "gbte-rag-search",
     title: "GreatBase Tennis RAG Search",
-    description: "Ask a tennis related question and receive an answer based in GreatBase content. Built on 300+ hours of GBTE's own podcasts and course videos.",
+    description: "Ask a tennis question and receive an answer based in GreatBase content. Built on 300+ hours of GBTE's own podcasts and courses.",
     tags: ["RAG", "Bedrock", "Aurora", "Lambda", "pgvector"],
     status: "complete",
     disabled: false,

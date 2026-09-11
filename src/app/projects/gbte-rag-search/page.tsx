@@ -35,7 +35,7 @@ export default function GBTERagSearch() {
 						GBTE RAG Search
 					</h1>
 					<p className="text-[11px] sm:text-[13px] text-white/40 leading-relaxed max-w-[600px]">
-						Ask a tennis related question and receive an answer based in GreatBase content. Built on 300+ hours of GBTE's own podcasts and course videos.
+						Ask a tennis question and receive an answer based in GreatBase content. Built on 300+ hours of GBTE's own podcasts and courses.
 					</p>
 				</div>
 
