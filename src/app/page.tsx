@@ -92,7 +92,7 @@ const COURSES = [
     title: "Machine Learning in Production",
     description: "MLOps practices for deploying and maintaining ML systems. Learning to understand production-grade pipelines.",
     tags: ["MLOps", "Python", "Deployment", "Monitoring"],
-    status: "planned",
+    status: "in progress",
     disabled: true,
     provider: "Coursera · DeepLearning.AI",
   },
