@@ -14,25 +14,26 @@ const PROJECTS = [
     disabled: false,
   },
   {
-    slug: "greatbase-tennis-rag-assistant",
-    title: "GreatBase Tennis RAG Assistant",
-    description: "A personal AI research assistant. In goes a list of links and out pops summaries, highlights, and relevant follow-up.",
-    tags: ["RAG", "LangChain", "Pinecone", "OpenAI", "FastAPI"],
-    status: "in progress",
-    disabled: true,
+    slug: "gbte-rag-search",
+    title: "GreatBase Tennis RAG Search",
+    description: "Ask a tennis related question and receive an answer based in GreatBase content. Built on 300+ hours of GBTE's own podcasts and course videos.",
+    tags: ["RAG", "Bedrock", "Aurora", "Lambda", "pgvector"],
+    status: "complete",
+    disabled: false,
   },
   {
     slug: "stringing-marketplace-micro-saas",
     title: "Stringing Marketplace Micro Saas",
     description: "Uber for tennis stringers. A place for non-professional stringers with neglected stringers to make an income on the side.",
     tags: ["Next.js", "FastAPI", "REST API", "PostgreSQL", "AWS"],
-    status: "planned",
+    status: "in progress",
     disabled: true,
   },
 ];
 
 const PROJECT_PREVIEWS: Record<string, string> = {
   "ml-architecture-comparison": "/videos/ml-architecture-comparison/preview-video.mp4",
+  "gbte-rag-search": "/videos/gbte-rag-search/gbte-hero-video.mp4",
 };
 
 const APP_PREVIEWS: Record<string, string> = {
